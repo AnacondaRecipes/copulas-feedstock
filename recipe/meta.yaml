@@ -49,6 +49,7 @@ about:
   license_file: LICENSE
   license_family: Other
   doc_url: https://sdv.dev/Copulas/
+  dev_url: https://github.com/sdv-dev/Copulas
 
 extra:
   recipe-maintainers:
