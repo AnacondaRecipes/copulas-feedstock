@@ -1,7 +1,6 @@
 {% set name = "copulas" %}
 {% set version = "0.9.0" %}
 
-
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -12,19 +11,21 @@ source:
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  skip: True # [py<37]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
-    - pytest-runner >=2.11.1
-    - python >=3.7,<3.12
+    - wheel
+    - python
+    - setuptools
+    - pytest-runner 6.0.0
   run:
+    - python
     - matplotlib-base >=3.4.0,<4
     - numpy >=1.20.0,<2
     - pandas >=1.1.3
-    - python >=3.7,<3.12
     - scipy >=1.5.4,<2
 
 test:
@@ -39,8 +40,16 @@ test:
 about:
   home: https://github.com/sdv-dev/Copulas
   summary: Create tabular synthetic data using copulas-based modeling.
+  description: |
+    Copulas is a Python library for modeling multivariate distributions and
+    sampling from them using copula functions. Given a table of numerical
+    data, use Copulas to learn the distribution and generate new synthetic
+    data following the same statistical properties.
   license: BUSL-1.1
   license_file: LICENSE
+  license_family: Other
+  doc_url: https://sdv.dev/Copulas/
+  dev_url: https://github.com/sdv-dev/Copulas
 
 extra:
   recipe-maintainers:
